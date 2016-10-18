@@ -4,8 +4,15 @@ angular.module('starter.controllers', ['ngCordova'])
   var options = {timeout: 10000, enableHighAccuracy: true};
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
  //defino estilo de mapa para borrar negocios
-    var myStyle = [ 
-{ 
+    var myStyle = [
+    {
+    stylers: [
+      { hue: "#00ffe6" },
+      { saturation: -20 }
+    ]
+  },
+     
+{         
           featureType: "poi.business", 
           elementType: "labels", 
           stylers: [ 
@@ -68,8 +75,8 @@ $http.get('js/markers.json').then(function(response){
       infoWindow.open($scope.map, marker);
   });
 })  
-}) 
-}) 
+})  
+})
 })
 })
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
@@ -114,6 +121,7 @@ $http.get('js/markers.json').then(function(response){
 })
 
 .controller('PlaylistsCtrl', function($scope) {
+
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
