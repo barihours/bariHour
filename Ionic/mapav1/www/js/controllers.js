@@ -110,7 +110,8 @@ $scope.opcion=(MyService.getProperty());
 })
 })
 })
-});
+})
+.controller('Lista',function($scope, $http, $filter, MyService) {});
 /*directionsDisplay = new google.maps.DirectionsRenderer({
               });
 start  = new google.maps.LatLng(-41.135893,  -71.310535);
