@@ -36,16 +36,36 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/menu',
     views: {
       'menuContent': {
-        templateUrl: 'templates/menu.html'
+        templateUrl: 'templates/menu.html',
+        controller: 'AppCtrl'
       }
     }
   })
 
-  .state('app.lista', {
-      url: '/lista',
+  .state('app.listaCerve', {
+      url: '/listaCerve',
       views: {
         'menuContent': {
-          templateUrl: 'templates/lista.html'
+          templateUrl: 'templates/listaCerve.html',
+          controller: 'Lista'
+        }
+      }
+    })
+  .state('app.listaBar', {
+      url: '/listaBar',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/listaBar.html',
+          controller: 'Lista'
+        }
+      }
+    })
+  .state('app.detalles', {
+      url: '/detalles',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/detalles.html',
+          controller: 'Detalles'
         }
       }
     })

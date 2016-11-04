@@ -2,6 +2,9 @@ angular.module('starter.controllers', ['ngCordova'])
 .service('MyService', function () {
         var property;
         var array;
+        var ubicacion;
+        var tipo;
+        var item;
 
         return {
             getProperty: function () {
@@ -10,11 +13,29 @@ angular.module('starter.controllers', ['ngCordova'])
             setProperty: function(value) {
                 property = value;
             },
+            setUbicacion: function (value) {
+                ubicacion=value;
+            },
+            getUbicacion: function () {
+                return ubicacion;
+            },
             getArray: function () {
                 return array;
             },
             setArray: function(value) {
                 array = value;
+            },
+            getTipo: function () {
+                return tipo;
+            },
+            setTipo: function (value) {
+                tipo=value;
+            },
+            getItem: function () {
+                return item;
+            },
+            setItem: function (value) {
+                item=value;
             }
         };
     })
@@ -24,6 +45,13 @@ angular.module('starter.controllers', ['ngCordova'])
         MyService.setProperty(e);
         //console.log(MyService.getProperty());
     };
+  $scope.ubicacion = function(e) {
+        MyService.setUbicacion(e);
+      };
+  $scope.tipo = function(e) {
+        MyService.setTipo(e);
+      };
+  
     if(MyService.setArray()==null){
     $http.get('js/markers.json').then(function(response){
     MyService.setArray(response.data);
@@ -31,6 +59,7 @@ angular.module('starter.controllers', ['ngCordova'])
   })
   
 .controller('MapCtrl', function($scope,$cordovaGeolocation, $http, $filter, MyService) {
+$scope.centrado=(MyService.getUbicacion());
 $scope.opcion=(MyService.getProperty());
   var options = {timeout: 10000, enableHighAccuracy: true};
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
@@ -55,6 +84,11 @@ $scope.opcion=(MyService.getProperty());
     //GPS aveces incorrecto
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     latLngCentro = new google.maps.LatLng(-41.135893,  -71.310535);
+    /*if ($scope.centrado==1){
+      latLngCentro=latLng;
+    }
+    else latLngCentro = new google.maps.LatLng(-41.135893,  -71.310535);
+    console.log(latLngCentro);*/
     var mapOptions = {
       mapTypeControlOptions: { 
         mapTypeIds: ['myStyle'] 
@@ -82,7 +116,7 @@ $scope.opcion=(MyService.getProperty());
   //Loop json
   angular.forEach($scope.data.marcadores, function(value, key){
   //Verifica si esta entre el horario y cambia el icono
-  if ($scope.opcion==value.id || $scope.opcion==0){
+  if ($scope.opcion==value.tipo|| $scope.opcion==0){
   if (today>value.start && today<value.end){
       //value.icon="";
        var animation=google.maps.Animation.BOUNCE}
@@ -111,7 +145,25 @@ $scope.opcion=(MyService.getProperty());
 })
 })
 })
-.controller('Lista',function($scope, $http, $filter, MyService) {});
+.controller('Lista',function($scope, MyService) {
+$scope.data=MyService.getArray();
+$scope.tipo=MyService.getTipo();
+$scope.detalle = function(e) {
+        MyService.setItem(e);
+    };
+
+
+})
+.controller('Detalles',function($scope, MyService) {
+$scope.data=MyService.getArray();
+$scope.id=MyService.getItem();
+console.log($scope.id);
+$scope.item=$scope.data.marcadores[$scope.id];
+console.log($scope.item);
+
+
+
+});
 /*directionsDisplay = new google.maps.DirectionsRenderer({
               });
 start  = new google.maps.LatLng(-41.135893,  -71.310535);

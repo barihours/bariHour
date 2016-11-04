@@ -1,5 +1,5 @@
 
-<ion-nav-bar class="bar-calm" >
+<ion-nav-bar class="bar-dark" >
   <ion-nav-title>
     <h1 class="title">Barihour </h1>
   </ion-nav-title>
@@ -10,38 +10,37 @@
     
 <ion-nav-view name="menuContent"></ion-nav-view>
 <ion-content>
-  <br>
-
-  </br>
       <ul id="menu1">
-        <li ><a href="#/app/mapa"><img src="img/menu/1.jpg" alt="#" ng-click="myFunc(1)" title="Cerveceria" /></a></li>
-        <li><a href="#/app/mapa"><img src="img/menu/2.jpg" alt="#" ng-click="myFunc(2)" title="Restaurante" /></a></li>
-        <li><a href="#/app/mapa"><img src="img/menu/3.jpg" alt="#" ng-click="myFunc(0)" title="Heladeria" /></a></li>
-        <li><a href="#/app/mapa"><img src="img/menu/4.jpg" alt="#"  ng-click="myFunc(4)" title="Farmacias" /></a></li>
+        <li><a href="#/app/mapa"><img src="img/menu/birra1.jpg" alt="#" ng-click="myFunc(1)" title="Cerveceria" /></a></li>
+        <li><a href="#/app/mapa"><img src="img/menu/vino.jpg" alt="#" ng-click="myFunc(2)" title="Restaurante" /></a></li>
+        <li><a href="#/app/mapa"><img src="img/menu/birra3.jpg" alt="#"  ng-click="myFunc(0)" title="Todos" /></a>
+        </li>
       </ul>
 
 
  </div>
 </ion-content>
-<div class="tabs-calm tabs-icon-top">
+<div class="tabs-dark tabs-icon-top">
 
     <div class="tabs">
       <a class="tab-item" href="#/app/menu">
         <i class="icon ion-home" ></i>
         Main Menu
       </a>
-      <a class="tab-item" href="#/app/mapa">
-        <i class="icon ion-ios-location"></i>
+      <a class="tab-item" <href="">
+        <i class="icon ion-ios-location" ng-click="ubicacion(1)"></i>
         Mi ubicacion
       </a>
-      <a class="tab-item" href="#/app/lista">
-        <i class="icon ion-wineglass" ng-click="login()" ></i>
+      <a class="tab-item" href="#/app/listaBar">
+        <i class="icon ion-wineglass" ng-click="tipo(2)" ></i>
         Bares
       </a>
-      <a class="tab-item" href="#/app/lista">
-        <i class="icon ion-beer" ng-click="login()" ></i>
+      <a class="tab-item" href="#/app/listaCerve">
+        <i class="icon ion-beer" ng-click="tipo(1)"></i>
         Cervecerias
       </a>
     </div>
+</div>
+
 
 
