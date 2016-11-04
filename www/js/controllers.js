@@ -1,8 +1,37 @@
 angular.module('starter.controllers', ['ngCordova'])
-.controller('MapCtrl', function($scope,$cordovaGeolocation, $http, $filter) {
+.service('MyService', function () {
+        var property;
+        var array;
+
+        return {
+            getProperty: function () {
+                return property;
+            },
+            setProperty: function(value) {
+                property = value;
+            },
+            getArray: function () {
+                return array;
+            },
+            setArray: function(value) {
+                array = value;
+            }
+        };
+    })
+.controller('AppCtrl', function($scope,MyService,$http) {
+
+  $scope.myFunc = function(e) {
+        MyService.setProperty(e);
+        //console.log(MyService.getProperty());
+    };
+    if(MyService.setArray()==null){
+    $http.get('js/markers.json').then(function(response){
+    MyService.setArray(response.data);
+            })}
+  })
   
-
-
+.controller('MapCtrl', function($scope,$cordovaGeolocation, $http, $filter, MyService) {
+$scope.opcion=(MyService.getProperty());
   var options = {timeout: 10000, enableHighAccuracy: true};
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
  //defino estilo de mapa para borrar negocios
@@ -44,12 +73,46 @@ angular.module('starter.controllers', ['ngCordova'])
       map: $scope.map,
       position: latLng
   });  
+    google.maps.event.addListenerOnce($scope.map, 'idle', function(){
+
     //Espera hasta que el mapa haya cargado
-google.maps.event.addListenerOnce($scope.map, 'idle', function(){
+    var today = $filter('date')(new Date(),'HH:mm:ss');
+//Marcadores
+    $scope.data=MyService.getArray();
+  //Loop json
+  angular.forEach($scope.data.marcadores, function(value, key){
+  //Verifica si esta entre el horario y cambia el icono
+  if ($scope.opcion==value.id || $scope.opcion==0){
+  if (today>value.start && today<value.end){
+      //value.icon="";
+       var animation=google.maps.Animation.BOUNCE}
+  //Setea marcador
+  marker = new google.maps.Marker({
+      map: $scope.map,
+      animation: animation,
+      title: value.descrip,
+      icon: {url:value.icon},
+      position: {lat: value.lat,
+                  lng: value.lng}
+  });  
 
+    //Descripcion cada marcador   
+   var infoWindow = new google.maps.InfoWindow({
+      content: value.descrip
+    });
+   //Agrega Evento de click
+   google.maps.event.addListener(marker, 'click', function () {
+      infoWindow.open($scope.map, marker);
+  });
+       markers.push(marker);
 
-
-directionsDisplay = new google.maps.DirectionsRenderer({
+}
+})
+})
+})
+})
+.controller('Lista',function($scope, $http, $filter, MyService) {});
+/*directionsDisplay = new google.maps.DirectionsRenderer({
               });
 start  = new google.maps.LatLng(-41.135893,  -71.310535);
   end = new google.maps.LatLng(-41.135893,  -71.310000);   
@@ -67,6 +130,7 @@ directionsService.route(request, function(response, status) {
 
                   }
               });
+*/
 
 
 
@@ -74,64 +138,3 @@ directionsService.route(request, function(response, status) {
 
 
 
-
-
-
-
-
-
-
-//Hora actual en hh:mm:ss
-var today = $filter('date')(new Date(),'HH:mm:ss');
-//Marcadores
-//Carga Json
-$http.get('js/markers.json').then(function(response){
-            $scope.data = response.data;
-  //Loop json
-  angular.forEach($scope.data.marcadores, function(value, key){
-  //Verifica si esta entre el horario y cambia el icono
-  if (today>value.start && today<value.end){
-      //value.icon="";
-       var animation=google.maps.Animation.BOUNCE}
-  //Setea marcador
-  marker = new google.maps.Marker({
-      map: $scope.map,
-      animation: animation,
-      title: value.descrip,
-      icon: {url:value.icon},
-      position: {lat: value.lat,
-                  lng: value.lng}
-  });  
-  //setTimeout(marker, 15);
-
-    //Descripcion cada marcador   
-   var infoWindow = new google.maps.InfoWindow({
-      content: value.descrip
-    });
-   //Agrega Evento de click
-   google.maps.event.addListener(marker, 'click', function () {
-      infoWindow.open($scope.map, marker);
-  });
-       markers.push(marker);
-
-
-
-
-
-
-
-
-})  
-
-})  
-})
-})
-})
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-})
-
-.controller('PlaylistsCtrl', function($scope) {
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
