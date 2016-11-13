@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ngCordova'])
+angular.module('starter.controllers', [])
 .service('MyService', function () {
         var property;
         var array;
