@@ -1,44 +1,43 @@
 angular.module('starter.controllers', [])
 .service('MyService', function () {
-        var property;
-        var array;
-        var ubicacion;
-        var tipo;
-        var item;
-
-        return {
-            getProperty: function () {
-                return property;
-            },
-            setProperty: function(value) {
-                property = value;
-            },
-            setUbicacion: function (value) {
-                ubicacion=value;
-            },
-            getUbicacion: function () {
-                return ubicacion;
-            },
-            getArray: function () {
-                return array;
-            },
-            setArray: function(value) {
-                array = value;
-            },
-            getTipo: function () {
-                return tipo;
-            },
-            setTipo: function (value) {
-                tipo=value;
-            },
-            getItem: function () {
-                return item;
-            },
-            setItem: function (value) {
-                item=value;
-            }
-        };
-    })
+  var property;
+  var array;
+  var ubicacion;
+  var tipo;
+  var item;
+  return {
+    getProperty: function () {
+      return property;
+    },
+    setProperty: function(value) {
+      property = value;
+    },
+    setUbicacion: function (value) {
+      ubicacion=value;
+    },
+    getUbicacion: function () {
+      return ubicacion;
+    },
+    getArray: function () {
+      return array;
+    },
+    setArray: function(value) {
+      array = value;
+    },
+    getTipo: function () {
+      return tipo;
+    },
+    setTipo: function (value) {
+      tipo=value;
+    },
+    getItem: function () {
+      return item;
+    },
+    setItem: function (value) {
+      item=value;
+    }
+  };
+})
 //fabrica de array firebase
 .factory('Marks', function(){
   var database = firebase.database();//se llama a a base de datos en firebase
@@ -89,23 +88,22 @@ angular.module('starter.controllers', [])
 
 })
 .controller('AppCtrl', function($scope,MyService,Marks,$http) {
-
   $scope.myFunc = function(e) {
-        MyService.setProperty(e);
-        console.log("Get property",MyService.getProperty());
-    };
+    MyService.setProperty(e);
+    console.log("Get property",MyService.getProperty());
+  };
   $scope.ubicacion = function(e) {
-        MyService.setUbicacion(e);
-      };
+    MyService.setUbicacion(e);
+  };
   $scope.tipo = function(e) {
-        MyService.setTipo(e);
-      };
+     MyService.setTipo(e);
+  };
   
     /*if(MyService.setArray()==null){
     $http.get('js/markers.json').then(function(response){
     MyService.setArray(response.data);
             })}*/
-  })
+})
   
 .controller('MapCtrl', function($scope,$cordovaGeolocation, $http, $filter, MyService, Marks) {
   $scope.centrado=(MyService.getUbicacion());
@@ -209,14 +207,12 @@ $scope.detalle = function(e) {
 })*/
 //controladores de las listas de cerveceria y bares desde firebase
 .controller('Lista',function($scope, Marks, MyService) {
-//$scope.data=MyService.getArray();
-$scope.data=Marks.all();
-$scope.tipo=MyService.getTipo();
-$scope.detalle = function(e) {
-        MyService.setItem(e);
-    };
-
-
+  //$scope.data=MyService.getArray();
+  $scope.data=Marks.all();
+  $scope.tipo=MyService.getTipo();
+  $scope.detalle = function(e) {
+    MyService.setItem(e);
+  };
 })
 //controladores de la pagina de detalles de las cervecerias y bares desd json
 /*.controller('Detalles',function($scope, MyService) {
@@ -228,11 +224,11 @@ console.log($scope.item);
 });*/
 //controladores de la pagina de detalles de las cervecerias y bares desd json
 .controller('Detalles',function($scope, Marks, MyService) {
-$scope.data=Marks.all();
-$scope.id=MyService.getItem();
-console.log("myservice scope id",$scope.id);
-$scope.item=$scope.data[$scope.id +1];// busca el item en array de firebase, suma uno para traer ee correcto
-console.log("detalles scope item",$scope.item);
+  $scope.data=Marks.all();
+  $scope.id=MyService.getItem();
+  console.log("myservice scope id",$scope.id);
+  $scope.item=$scope.data[$scope.id +1];// busca el item en array de firebase, suma uno para traer ee correcto
+  console.log("detalles scope item",$scope.item);
 });
 /*directionsDisplay = new google.maps.DirectionsRenderer({
               });
