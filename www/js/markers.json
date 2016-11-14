@@ -60,7 +60,7 @@
 	"tipo":2,
         "lat": -41.135158,  
         "lng": -71.310529,
-	"icon": "img/Southbar.png",
+	"icon": "img/cerve.png",
 	"image": "img/Imagenes/southbar.png",
         "descrip": "South Bar",
 	"start": "10:00:00",
@@ -91,13 +91,47 @@
 	{
 	"id":8, 
 	"tipo":2,
-        "lat": -41.135213,  
-        "lng": -71.310560,
-	"icon": "../",
+        "lat": -41.135303,  
+        "lng": -71.310619, 
+	"icon": "img/cerve.png",
 	"image": "img/Imagenes/Vikingos.jpg",
         "descrip": "Vikingos",
 	"start": "10:00:00",
 	"end": "24:00:00"
+      },
+     {
+	"id":9, 
+	"tipo":1,
+        "lat": -41.135774, 
+        "lng":   -71.308784, 
+	"icon": "img/cerve.png",
+	"image": "img/Imagenes/Bachmann.jpg",
+        "descrip": "Bachmann",
+	"start": "10:00:00",
+	"end": "24:00:00"
+      },
+    {
+    "id":10, 
+	"tipo":2,
+        "lat": -41.134974, 
+        "lng":   -71.312298, 
+	"icon": "img/cerve.png",
+	"image": "img/Imagenes/Stradibar.png",
+        "descrip": "Stradibar",
+	"start": "10:00:00",
+	"end": "24:00:00"
+      },
+    {
+    "id":11, 
+	"tipo":2,
+        "lat": -41.134899, 
+        "lng":   -71.311960, 
+	"icon": "img/cerve.png",
+	"image": "img/Imagenes/Kutral.jpg",
+        "descrip": "Kutral",
+	"start": "10:00:00",
+	"end": "24:00:00"
       }
+
 ]
 }

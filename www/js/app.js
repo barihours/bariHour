@@ -25,13 +25,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+    .state('home', {
+    url: '/home',
+    templateUrl: 'templates/home.html'
+  
+  })
     .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    templateUrl: 'templates/menu.html'
   })
-
+  
   .state('app.menu', {
     url: '/menu',
     views: {
@@ -60,11 +64,20 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-  .state('app.detalles', {
-      url: '/detalles',
+  .state('app.detallesBar', {
+      url: '/detallesBar',
       views: {
         'menuContent': {
-          templateUrl: 'templates/detalles.html',
+          templateUrl: 'templates/detallesBar.html',
+          controller: 'Detalles'
+        }
+      }
+    })
+  .state('app.detallesCerve', {
+      url: '/detallesCerve',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/detallesCerve.html',
           controller: 'Detalles'
         }
       }
@@ -80,5 +93,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/menu');
+  $urlRouterProvider.otherwise('/home');
 });

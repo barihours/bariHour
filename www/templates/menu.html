@@ -3,6 +3,9 @@
   <ion-nav-title>
     <h1 class="title">Barihour </h1>
   </ion-nav-title>
+  <ion-nav-back-button class="button-clear">
+    <i class="ion-android-arrow-back"></i> Atras
+  </ion-nav-back-button>
 </ion-nav-bar>
 
 
@@ -17,8 +20,6 @@
         </li>
       </ul>
 
-
- </div>
 </ion-content>
 <div class="tabs-dark tabs-icon-top">
 
@@ -27,16 +28,16 @@
         <i class="icon ion-home" ></i>
         Main Menu
       </a>
-      <a class="tab-item" <href="">
-        <i class="icon ion-ios-location" ng-click="ubicacion(1)"></i>
+      <a class="tab-item" href="#/app/mapa">
+        <i class="icon ion-ios-location" ></i>
         Mi ubicacion
       </a>
       <a class="tab-item" href="#/app/listaBar">
-        <i class="icon ion-wineglass" ng-click="tipo(2)" ></i>
+        <i class="icon ion-wineglass"></i>
         Bares
       </a>
       <a class="tab-item" href="#/app/listaCerve">
-        <i class="icon ion-beer" ng-click="tipo(1)"></i>
+        <i class="icon ion-beer"></i>
         Cervecerias
       </a>
     </div>
