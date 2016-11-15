@@ -1,4 +1,6 @@
+
 angular.module('starter.controllers', [])
+
 
 
 .controller('AppCtrl', function($scope,MyService,$http,$cordovaGeolocation) {
@@ -23,15 +25,18 @@ angular.module('starter.controllers', [])
   })
   
 .controller('MapCtrl', function($scope,$cordovaGeolocation, $http, $filter, MyService) {
+
   $scope.centrado=(MyService.getUbicacion());
   $scope.opcion=(MyService.getProperty());
   var options = {timeout: 10000, enableHighAccuracy: true};
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
       var marker = new google.maps.Marker({
         map: $scope.map,
         position: latLng
       });  
+
     })
   //defino estilo de mapa para borrar negocios
   var myStyle = [{
@@ -117,7 +122,6 @@ angular.module('starter.controllers', [])
   $scope.data=MyService.getArray();
   $scope.detalle = function(e) {
     MyService.setItem(e);
-    
     };
 })
 
@@ -125,10 +129,20 @@ angular.module('starter.controllers', [])
 $scope.data=MyService.getArray();
 $scope.id=MyService.getItem();
 $scope.item=$scope.data.marcadores[$scope.id];
+
 });
 
 
 /*directionsDisplay = new google.maps.DirectionsRenderer({
+=======
+
+
+
+});
+/*
+
+directionsDisplay = new google.maps.DirectionsRenderer({
+>>>>>>> 0d4084245e29ca74499f5a469a91f78669b54722
               });
 start  = new google.maps.LatLng(-41.135893,  -71.310535);
   end = new google.maps.LatLng(-41.135893,  -71.310000);   

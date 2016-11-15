@@ -9,11 +9,6 @@ angular.module('starter.routes', [])
     templateUrl: 'templates/home.html'
   
   })
-
-
-
-
-
   .state('app', {
     url: '/app',
     abstract: true,
