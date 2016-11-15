@@ -10,6 +10,12 @@ body { height: 100%; margin: 0px; padding: 0px }
 /*contiene la altura donde sin que el menu tape las imagenes*/
 #content{height: 94%}
 
+#menu img{
+  width:100%;
+  height:100%;
+  display: block;
+}
+
 #icono{position: absolute; top: 0px;left: 5px}
 
 
@@ -45,11 +51,8 @@ body { height: 100%; margin: 0px; padding: 0px }
   width:100%;
   -webkit-animation: mymove 20s ; /* Chrome, Safari, Opera */
   /*animation: mymove 20s ;*/
-}img{
-  width:100%;
-  height:100%;
-  display: block;
 }
+
 
 #start{
   position: absolute;
