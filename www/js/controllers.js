@@ -62,7 +62,9 @@ angular.module('starter.controllers', [])
         icon:marcador.val().icon,
         lat: marcador.val().lat,
         lng: marcador.val().lng,
-        image: marcador.val().image
+        image: marcador.val().image,
+        name: marcador.val().name,
+        horario: marcador.val().horario
 
        };
       marcadores.push(arr2);
@@ -210,6 +212,7 @@ $scope.detalle = function(e) {
   //$scope.data=MyService.getArray();
   $scope.data=Marks.all();
   $scope.tipo=MyService.getTipo();
+  console.log("myservice scope tipo",$scope.tipo);
   $scope.detalle = function(e) {
     MyService.setItem(e);
   };
