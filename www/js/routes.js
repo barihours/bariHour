@@ -6,8 +6,7 @@ angular.module('starter.routes', [])
 
   .state('home', {
     url: '/home',
-    templateUrl: 'templates/home.html'
-  
+    templateUrl: 'templates/home.html',
   })
   .state('app', {
     url: '/app',
@@ -40,6 +39,7 @@ angular.module('starter.routes', [])
     templateUrl: 'templates/map.html',
     controller: 'MapCtrl'
     })
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/home');
 });
