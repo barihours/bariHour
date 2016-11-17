@@ -1,0 +1,54 @@
+Google Sign-In
+
+var credential = firebase.auth.GoogleAuthProvider.credential(
+    googleUser.getAuthResponse().id_token);
+
+Acceso a Facebook
+
+var credential = firebase.auth.FacebookAuthProvider.credential(
+    response.authResponse.accessToken);
+
+Acceso con correo electrónico y contraseña
+
+var credential = firebase.auth.EmailPasswordAuthProvider.credential(email, password);
+
+Pasar el objeto AuthCredential al métodolink del usuario que inicia sesión:
+
+auth.currentUser.link(credential).then(function(user) {
+  console.log("Account linking success", user);
+}, function(error) {
+  console.log("Account linking error", error);
+});
+
+si el metodo link falla
+// Get reference to the currently signed-in user
+var prevUser = auth.currentUser;
+// Sign in user with another account
+auth.signInWithCredential(credential).then(function(user) {
+  console.log("Sign In Success", user);
+  var currentUser = user;
+  // Merge prevUser and currentUser accounts and data
+  // ...
+}, function(error) {
+  console.log("Sign In Error", error);
+});
+
+
+firebase.auth().getRedirectResult().then(function(result) {
+  if (result.credential) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // ...
+  }
+  // The signed-in user info.
+  var user = result.user;
+}).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});

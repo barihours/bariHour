@@ -7,16 +7,17 @@ angular.module('starter.routes', [])
   .state('home', {
     url: '/home',
     templateUrl: 'templates/home.html',
+    controller: 'loginCtrl'
   })
   .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
+    templateUrl: 'templates/tab.html',
       
     })
   .state('app.menu', {
     url: '/menu',
-    templateUrl: 'templates/menu.html',
+    templateUrl: 'templates/menu2.html',
     controller: 'AppCtrl'
     })
   .state('app.listaCerve', {
