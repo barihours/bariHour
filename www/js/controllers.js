@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 
-.controller('AppCtrl', function($scope,MyService,Marks,$http) {
+.controller('AppCtrl', function($scope,MyService,Marks,$http,$cordovaGeolocation) {
   $scope.myFunc = function(e) {
     MyService.setProperty(e);
     console.log("Get property",MyService.getProperty());
@@ -9,9 +9,17 @@ angular.module('starter.controllers', [])
   $scope.ubicacion = function(e) {
     MyService.setUbicacion(e);
   };
-  $scope.tipo = function(e) {
+   $cordovaGeolocation.getCurrentPosition()
+    .then(function() {
+    })
+    .catch(function() {
+      console.log("Error de ubicacion")
+      alert("Por favor enciende el GPS")
+
+    })
+  /*$scope.tipo = function(e) {
      MyService.setTipo(e);
-  };
+  };*/
   
     /*if(MyService.setArray()==null){
     $http.get('js/markers.json').then(function(response){
