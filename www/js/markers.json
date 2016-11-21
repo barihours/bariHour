@@ -6,7 +6,7 @@
 			"tipo":1,
 			"name": "Berlina",
 			"horario":"Abierto de 12:00 a 00:00",
-	        "direccion": "Av. Exequiel Bustillo km 11,750, San Carlos de Bariloche, Río Negro",
+	        "direccion": "Av. Exequiel Bustillo km 11,750, San Carlos de Bariloche",
 	        "telefono": "0294 452-3336",
 	        "descrip":"",
 	        "web":"cervezaberlina.com",
@@ -19,8 +19,9 @@
         	"iconMarKer": "img/cerve.png",
         	"logo":"",
 			"image": "img/Imagenes/Berlina.jpg",
-			"image2":"",
-			"image3":""
+			"image1":"img/Imagenes/berlina1.jpg",
+			"image2":"img/Imagenes/Berlina2.bmp",
+			"image3":"img/Imagenes/berlina3.jpg"
       	},
       	{
 			"id": 1,
@@ -40,8 +41,9 @@
         	"iconMarKer": "img/cerve.png",
         	"logo":"",
 			"image": "img/Imagenes/Manush.jpg",
-			"image2":"",
-			"image3":""
+			"image1":"img/Imagenes/manush1.jpg",
+			"image2":"img/Imagenes/manush2.jpg",
+			"image3":"img/Imagenes/manush3.jpg"
       	},
       	{
       		"id": 2,
@@ -100,28 +102,29 @@
 			"end": "24:00",			
         	"lat": -41.1350189, 
 	        "lng": -71.3110889,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"logo":"",
-			"image": "img/Imagenes/Konna.jpg",
-			"image2":"",
-			"image3":""
+			"image": "img/Imagenes/konnalogo.bmp",
+			"image1":"img/Imagenes/konna1.bmp",
+			"image2":"img/Imagenes/konna2.bmp",
+			"image3":"img/Imagenes/konna3.bmp"
       	},
 		{
 			"id":5, 
 			"tipo":2,
         	"name": "South Bar",
-	        "horario":"Abierto de 18 a 03",
+	        "horario":"Abierto de 20 a 03",
 	        "direccion": "Juramento, San Carlos de Bariloche, Río Negro",
 	        "telefono": "0294 452-2001",
 	        "descrip":"",
 	        "web":"",
 	        "facebook":"",
 	        "twiter":"",
-			"start": "10:00",
+			"start": "20:00",
 			"end": "24:00",
         	"lat": -41.135219,  
         	"lng": -71.3108608,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"image": "img/Imagenes/southbar.png",
 			"image2":"",
 			"image3":""
@@ -141,7 +144,7 @@
 			"end": "03:30",
         	"lat": -41.135279,  
         	"lng": -71.3110629,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"image": "img/Imagenes/Dublin.jpg",
 			"image2":"",
 			"image3":""
@@ -161,7 +164,7 @@
 			"end": "03:00",
         	"lat": -41.135325,  
         	"lng": -71.3109376,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"image": "img/Imagenes/Santino.jpg",
 			"image2":"",
 			"image3":""
@@ -181,7 +184,7 @@
 			"end": "03:00",
         	"lat": -41.135277,  
         	"lng": -71.310503,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"image": "img/Imagenes/Vikingos.jpg",
 			"image2":"",
 			"image3":""
@@ -221,7 +224,7 @@
 			"end": "20:00",
         	"lat": -41.1350094,  
         	"lng": -71.3121491,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"image": "img/Imagenes/Stradibar.png",
 			"image2":"",
 			"image3":""    
@@ -241,7 +244,7 @@
 			"end": "20:00",
         	"lat": -41.1348876,  
         	"lng": -71.3120071,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"image": "img/Imagenes/Kutral.jpg",
 			"image2":"",
 			"image3":"" 
@@ -401,7 +404,7 @@
 			"end": "02:00",
         	"lat": -41.1325169,  
         	"lng": -71.3170585,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"image": "img/Imagenes/logo512x512.png",
 			"image2":"",
 			"image3":"" 
@@ -421,7 +424,7 @@
 			"end": "02:00",
         	"lat": -41.1325169,  
         	"lng": -71.3170585,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"image": "img/Imagenes/logo512x512.png",
 			"image2":"",
 			"image3":"" 
@@ -441,7 +444,7 @@
 			"end": "02:00",
         	"lat": -41.1325169,  
         	"lng": -71.3170585,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"image": "img/Imagenes/logo512x512.png",
 			"image2":"",
 			"image3":"" 
@@ -461,7 +464,7 @@
 			"end": "02:00",
         	"lat": -41.1325169,  
         	"lng": -71.3170585,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"image": "img/Imagenes/logo512x512.png",
 			"image2":"",
 			"image3":"" 
@@ -481,7 +484,7 @@
 			"end": "02:00",
         	"lat": -41.1325169,  
         	"lng": -71.3170585,
-			"iconMarKer": "img/cerve.png",
+			"iconMarKer": "img/glass.png",
 			"image": "img/Imagenes/logo512x512.png",
 			"image2":"",
 			"image3":"" 
@@ -563,8 +566,9 @@
         	"lng": -71.3170585,
 			"iconMarKer": "img/cerve.png",
 			"image": "img/Imagenes/logo512x512.png",
-			"image2":"",
-			"image3":"" 
+			"image1":"img/Imagenes/patagonia1.png",
+			"image2":"img/Imagenes/patagonia2.jpg",
+			"image3":"img/Imagenes/patagonia3.jpg"
       	},
       	{
 			"id":28, 
@@ -682,9 +686,10 @@
         	"lat": -41.1325169,  
         	"lng": -71.3170585,
 			"iconMarKer": "img/cerve.png",
-			"image": "img/Imagenes/logo512x512.png",
-			"image2":"",
-			"image3":"" 
+			"image": "img/Imagenes/dagdalogo.bmp",
+			"image1":"img/Imagenes/dagda1.bmp",
+			"image2":"img/Imagenes/dagda2.bmp",
+			"image3":"img/Imagenes/dagda4.bmp"
       	},
 		{
 			"id":34, 

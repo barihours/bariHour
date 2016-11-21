@@ -4,21 +4,26 @@ angular.module('starter.services', [])
     .service('MyService', function () {
         var property;
         var array;
-        var ubicacion;
         var item;
+        var lat;
+        var long;
 
         return {
+            getLat: function () {
+                return lat;
+            },
+            getLon: function () {
+                return long;
+            },
+            setLocation: function(value) {
+                lat = value.coords.latitude;
+                long = value.coords.longitude;
+            },
             getProperty: function () {
                 return property;
             },
             setProperty: function(value) {
                 property = value;
-            },
-            setUbicacion: function (value) {
-                ubicacion=value;
-            },
-            getUbicacion: function () {
-                return ubicacion;
             },
             getArray: function () {
                 return array;
