@@ -7,12 +7,6 @@ angular.module('starter.controllers', [])
   if (user != null) {
    // console.log ('current user lista',user);
     //$state.go('app.menu', {});
-
-    /* User is signed in.
-    name = user.displayName;
-    email = user.email;
-    photoUrl = user.photoURL;
-    uid = user.uid;*/
   } 
   else {
     $state.go('home', {});
@@ -23,7 +17,7 @@ angular.module('starter.controllers', [])
       }, 1);
 
       firebase.auth().signOut()
-      console.log("Saliendo ...");
+      console.log("Saliendo (app)...");
 
     }
 
@@ -33,13 +27,7 @@ angular.module('starter.controllers', [])
     MyService.setProperty(e);
   
   };
-  $scope.ubicacion = function(e) {
-    MyService.setUbicacion(e);
-  };
-  $scope.tipo = function(e) {
-     MyService.setTipo(e);
-  };
-  
+    
   $cordovaGeolocation.getCurrentPosition()
     .then(function() {
     })
@@ -54,9 +42,59 @@ angular.module('starter.controllers', [])
             })}*/
 
 })
+.controller('userCtrl',function($scope, $timeout, firebase, $state){
+  var user = firebase.auth().currentUser;
+  var name, email, photoUrl, uid;
+  //if (user) {
+  if (user != null) {
+    //console.log ('userCtrl',user);
+    //$state.go('app.menu', {});
+    //muestro los valores de la base de datos firebase por consola
+    /*user.providerData.forEach(function (profile) {
+    console.log("Sign-in provider: "+profile.providerId);
+    console.log("  Provider-specific UID: "+profile.uid);
+    console.log("  Name: "+profile.displayName);
+    console.log("  Email: "+profile.email);
+    console.log("  Photo URL: "+profile.photoURL);
+  });*/
+
+    //User is signed in.
+    $scope.name = user.displayName;
+    $scope.email = user.email;
+    $scope.photoUrl = user.photoURL;
+    $scope.uid = user.uid;
+    //console.log('email: ',$scope.uid);
+  } 
+  else {
+    $state.go('home', {});
+  };
+
+  $scope.doLogout = function () {
+      $timeout(function () {
+        $state.go('home', {})
+      }, 1);
+
+      firebase.auth().signOut()
+      console.log("Saliendo (user)...");
+
+    }
+    $scope.cambiarUser=function(){
+      var user = firebase.auth().currentUser;
+    user.delete()
+    firebase.auth().signOut()
+    //console.log("cambiar user ...");
+    console.log("Saliendo (user)...");
+      /*console.log ('cambiar usuario');
+      var user= firebase.auth().currentUser;
+      console.log("borrado ...",user);
+      firebase.auth().signOut()
+      console.log("Cambiar ...",user);*/
+      $state.go('home', {})
+    }
+})
 .controller('loginCtrl',function($scope, $timeout, firebase, $state,$ionicModal){
   // $scope, $timeout, firebase, $state
-  console.log ('loginctrl');
+ // console.log ('loginctrl');
 
   /*$ionicModal.fromTemplateUrl('login.html', {
     scope: $scope,
@@ -86,7 +124,7 @@ angular.module('starter.controllers', [])
     //muestra loadin hasta que termina de realizar el proceso de autenticacion
     
     if (user) {
-      console.log('user onAuthStateChanged ', user)
+      //console.log('user onAuthStateChanged ', user)
       // el usuario que esta logueado en firebase en la esta aplicacion
       //para poder cambiar por ahora hay que eliminar el usuario
       
@@ -157,7 +195,7 @@ angular.module('starter.controllers', [])
       });*/
     }
     $scope.loginFace=function(Facebook){
-        console.log('face');
+        //console.log('face');
         var provider = new firebase.auth.FacebookAuthProvider();
         firebase.auth().signInWithPopup(provider)
         .then(function(result) {
@@ -225,7 +263,7 @@ angular.module('starter.controllers', [])
       }, 1);
 
       firebase.auth().signOut()
-      console.log("Saliendo ...");
+      console.log("Saliendo (map)...");
 
     }//termina lo relacionado a loggin y loggout
   $scope.centrado=(MyService.getUbicacion());
@@ -313,14 +351,20 @@ angular.module('starter.controllers', [])
           });  
           //Descripcion cada marcador   
           var infoWindow = new google.maps.InfoWindow({
-            content: value.name
+            content: value.name,
+            //agrega ver mas en la descripcion de cada marcador
+            content:  "<div id= \"contentInfo\"><div id=\"name\"> <b>"+value.name+"</b></div>"+ value.horario+"<br> "+value.telefono +"<br><div><a class=\"button button-clear button-dark\" href=\"#/app/detalles\" ng-click=\"detalle()\"><b>Ver Mas</b></a> </div></div>"
+          
           });
           //Agrega Evento de click
           google.maps.event.addListener(marker, 'click', function(){
             if( prev_infowindow ) {
               prev_infowindow.close();
             }
+            //Guarda el valor del marcador clickeado para luego pasar este valor a detalle()
+            MyService.setItem(value.id);
 
+            
             prev_infowindow = infoWindow;
             infoWindow.open($scope.map, this);
           });
@@ -353,10 +397,9 @@ angular.module('starter.controllers', [])
         $state.go('home', {})
       }, 1);*/
     var user = firebase.auth().currentUser;
-    user.delete()
+    //user.delete()
     firebase.auth().signOut()
-    console.log("Eliminado ...");
-    console.log("Saliendo ...");
+    console.log("Saliendo (lista)...");
     $timeout(function () {
       $state.go('home', {})
     }, 1);
@@ -374,17 +417,16 @@ angular.module('starter.controllers', [])
 //controladores de la pagina de detalles de las cervecerias y bares desd json
 .controller('Detalles',function($scope, $timeout, firebase, $state, Marks, MyService) {
   // $scope, $timeout, firebase, $state
-   console.log("detallesCtrl");
+   //console.log("detallesCtrl");
   $scope.doLogout = function () {
           /*$timeout(function () {
             $state.go('home', {})
           }, 1);*/
     var user = firebase.auth().currentUser;
 
-    user.delete();
+    //user.delete();
     firebase.auth().signOut();
-      console.log("Eliminado ...");
-    console.log("Saliendo ...");
+    console.log("Saliendo (detall)...");
     $timeout(function () {
       $state.go('home', {})
     }, 1);

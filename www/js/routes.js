@@ -19,7 +19,7 @@ angular.module('starter.routes', [])
     url: '/app',
     abstract: true,
     templateUrl: 'templates/tab.html',
-      
+     controller:'AppCtrl' 
     })
   .state('app.menu', {
     url: '/menu',
@@ -38,6 +38,19 @@ angular.module('starter.routes', [])
     templateUrl: 'templates/listaBar.html',
     controller: 'Lista',
     cache: false    
+    })
+  .state('app.listaPubs', {
+    url: '/listaPubs',
+    templateUrl: 'templates/listaPubs.html',
+    controller: 'Lista',
+    cache: false    
+    })  
+  .state('app.usuario', {
+    url: '/usuario',
+    templateUrl: 'templates/usuario.html',
+    controller: 'userCtrl',
+    cache: false
+
     })
   .state('app.detalles', {
     url: '/detalles',

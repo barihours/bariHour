@@ -1,25 +1,25 @@
-<ion-nav-bar class="bar-ligth">
-  <ion-nav-title > 
-    <div id="icono">
-      <img src="img/favicon.ico"  >
-    </div> 
-    <h1 id="especial" class="title">BariHour</h1>
-    
-  </ion-nav-title>
+<ion-nav-view >
+  <ion-nav-bar class="bar-ligth">
+    <ion-nav-title > 
+      <div id="icono">
+        <img src="img/favicon.ico"  >
+      </div> 
+      <h1 id="especial" class="title">BariHour</h1>
+      
+    </ion-nav-title>
+  <ion-nav-buttons side="secondary">
+    <button class="button button-small  ion-log-out" ng-click="doLogout()">LogOut</button>
+  </ion-nav-buttons> 
 
 </ion-nav-bar>
 
-<ion-nav-view ></ion-nav-view>
+</ion-nav-view>
   
  <div class="tabs-ligth tabs-icon-top">
   <div class="tabs">
     <a class="tab-item" href="#/app/menu">
       <i class="icon ion-home " ></i>
       <b>Main Menu</b>
-    </a>
-    <a class="tab-item" href="">
-      <i class="icon ion-ios-location " ng-click="ubicacion(1)"></i>
-      <b>Mi ubicacion</b>
     </a>
     <a class="tab-item" href="#/app/listaBar">
       <i class="icon ion-wineglass " ng-click="tipo(2)"></i>
@@ -28,6 +28,14 @@
     <a class="tab-item " href="#/app/listaCerve">
       <i class="icon ion-beer " ng-click="tipo(1)"></i>
       <b>Cervecerias</b>
+    </a>
+    <a class="tab-item" href="#/app/listaPubs">
+        <i class="icon ion-social-freebsd-devil" ng-click="tipo(3)"></i>
+        <b>Pubs</b>
+    </a>  
+     <a class="tab-item " href="#/app/usuario">
+      <i class="icon ion-android-person" ng-click="usuario()"></i>
+      <b>Usuario</b>
     </a>
   </div>
 </div>
