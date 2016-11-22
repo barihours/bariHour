@@ -1,13 +1,7 @@
 <ion-view id="content">
-<!-- <ion-nav-buttons side="secondary">
-    <button class="button button-small  ion-log-out" ng-click="doLogout()">LogOut</button>
-</ion-nav-buttons> -->
-  <ion-content>
+ <ion-content>
 	<ion-list>
-	<!-- con json-->
-	<!--<ion-item class="item item-avatar" ng-repeat="x in data.marcadores" ng-if="x.tipo==tipo" href="#/app/detalles" ng-click="detalle({{x.id}})">-->
-	<!-- desde firebase-->
-		<ion-item class="item item-avatar" ng-repeat="x in data" ng-if="x.tipo==2" href="#/app/detalles" ng-click="detalle({{x.id}})">
+	<ion-item class="item item-avatar" ng-repeat="x in data" ng-if="x.tipo==2" href="#/app/detalles" ng-click="detalle({{x.id}})">
 			<img ng-src="{{x.image}}">
 				<!--<h1>{{x.id}}</h1>-->
 				<h2><b>{{x.name}}</b></h2>

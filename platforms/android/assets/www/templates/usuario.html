@@ -1,0 +1,51 @@
+<!--<ion-view view-title="Lista">
+  <ion-content>
+		<h2>{{item.descrip}}</h2>
+		<p>{{item.horario}}</p>
+		<p>Abierto de 20 a 04</p>
+		<p>Happy hour de {{item.start|date:'HH'}} a {{item.end|date:'HH'}}</p> 
+		<img src="{{item.image}}"> 
+  </ion-content>
+</ion-view>-->
+<style>
+#background {
+	background: url("{{}}") ;
+	background-size: 100% 95%;
+}
+
+#transbox {
+	margin: 30px;
+  	background-color: #ffffff;
+  	border: 1px solid black;
+  	opacity: 0.6;
+  	filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+#transbox p {
+  	margin: 5%;
+  	font-weight: bold;
+}
+</style>
+
+<ion-view >
+  <ion-nav-buttons side="secondary">
+      <button class="button button-small  ion-log-out" ng-click="doLogout()">SALIR</button>
+  </ion-nav-buttons> 
+  <ion-content id="background">
+  	<div id="transbox">
+<!--name = user.displayName;
+    email = user.email;
+    photoUrl = user.photoURL;
+    uid = user.uid; -->
+
+      <h2 id = "title_Name">{{name}}</h2>
+
+		  <p>{{email}}</p>
+       <p>{{uid}}</p>
+		  <!--<p>Happy hour de {{item.start|date:'HH'}} a {{item.end|date:'HH'}}</p>-->
+      <img ng-src="{{photoUrl}}" style="height:200px;width:250px">
+      <button class="button button-balanced ion-android-person" ng-click="cambiarUser()" >Cambiar Persona</button>
+    </div>			
+  </ion-content>
+</ion-view>
+

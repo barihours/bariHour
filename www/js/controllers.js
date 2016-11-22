@@ -1,12 +1,10 @@
 angular.module('starter.controllers', [])
 .controller('AppCtrl', function($scope, $timeout, firebase, $state, MyService, Marks,$http,$cordovaGeolocation) {
-  //$scope, $timeout, firebase, $state
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid;
   //if (user) {
   if (user != null) {
    // console.log ('current user lista',user);
-    //$state.go('app.menu', {});
   } 
   else {
     $state.go('home', {});
@@ -29,7 +27,8 @@ angular.module('starter.controllers', [])
   };
     
   $cordovaGeolocation.getCurrentPosition()
-    .then(function() {
+    .then(function(position) {
+      MyService.setLocation(position);
     })
     .catch(function() {
       console.log("Error de ubicacion")
@@ -266,7 +265,9 @@ angular.module('starter.controllers', [])
       console.log("Saliendo (map)...");
 
     }//termina lo relacionado a loggin y loggout
-  $scope.centrado=(MyService.getUbicacion());
+  var lat=MyService.getLat();
+  var lon=MyService.getLon();
+  //$scope.centrado=(MyService.getUbicacion());
   $scope.opcion=(MyService.getProperty());
   var options = {timeout: 10000, enableHighAccuracy: true};
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
@@ -329,7 +330,7 @@ angular.module('starter.controllers', [])
       //Loop json
       //angular.forEach($scope.data.marcadores, function(value, key){//desde json
       angular.forEach($scope.data, function(value, key){
-       
+       console.log('mapa',$scope.data);
         //Verifica si esta entre el horario y cambia el icono
         if (($scope.opcion)===value.tipo|| $scope.opcion===0){
          
@@ -341,36 +342,74 @@ angular.module('starter.controllers', [])
             map: $scope.map,
             animation: animation,
             title: value.name,
-            icon: {
-              url:value.icon
-            },
-            position: {
-              lat: value.lat,
-              lng: value.lng
-            }
+            icon: {url:value.iconMarKer},
+            position: {lat: value.lat,lng: value.lng},
+             
           });  
+          //console.log ('mapa',value.iconMarKer);
           //Descripcion cada marcador   
           var infoWindow = new google.maps.InfoWindow({
-            content: value.name,
+            //content: value.name,
             //agrega ver mas en la descripcion de cada marcador
             content:  "<div id= \"contentInfo\"><div id=\"name\"> <b>"+value.name+"</b></div>"+ value.horario+"<br> "+value.telefono +"<br><div><a class=\"button button-clear button-dark\" href=\"#/app/detalles\" ng-click=\"detalle()\"><b>Ver Mas</b></a> </div></div>"
           
-          });
+          })
           //Agrega Evento de click
-          google.maps.event.addListener(marker, 'click', function(){
+          google.maps.event.addListener(marker, 'click', function(idmarker,key){
+
             if( prev_infowindow ) {
               prev_infowindow.close();
             }
+          
             //Guarda el valor del marcador clickeado para luego pasar este valor a detalle()
             MyService.setItem(value.id);
 
-            
             prev_infowindow = infoWindow;
-            infoWindow.open($scope.map, this);
+            infoWindow.open($scope.map, this);       
           });
           //markers.push(marker);
         }
       })
+      function CenterControl(controlDiv, map) {
+
+              // Set CSS for the control border.
+              var controlUI = document.createElement('div');
+              controlUI.style.backgroundColor='#fff';
+              controlUI.style.border = '2px solid #fff';
+              controlUI.style.borderRadius = '3px';
+              controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+              controlUI.style.marginBottom = '22px';
+              controlUI.style.marginRight = '8px';
+              controlUI.style.textAlign = 'center';
+              controlDiv.appendChild(controlUI);
+
+              // Set CSS for the control interior.
+              var controlText = document.createElement('div');
+              controlText.style.color = 'rgb(25,25,25)';
+              controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+              controlText.style.fontSize = '12px';
+              controlText.style.lineHeight = '38px';
+              controlText.style.paddingLeft = '5px';
+              controlText.style.paddingRight = '5px';
+              controlText.innerHTML = '<b>GPS</b>';
+              controlUI.appendChild(controlText);
+
+              // Setup the click event listeners: go to your location.
+              controlUI.addEventListener('click', function() {
+                if (lat)
+                map.setCenter(new google.maps.LatLng(lat, lon));
+              });
+
+            }
+
+
+              // Create the DIV to hold the control and call the CenterControl() constructor
+              // passing in this DIV.
+              var centerControlDiv = document.createElement('div');
+              var centerControl = new CenterControl(centerControlDiv, $scope.map);
+              centerControlDiv.index = 1;
+              $scope.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
+    
     })
   //})
 })
@@ -379,7 +418,7 @@ angular.module('starter.controllers', [])
 
 
 //controladores de las listas de cerveceria y bares desde firebase
-.controller('Lista',function($scope, $timeout, firebase, $state, Marks, MyService) {
+.controller('Lista',function($scope, $timeout, firebase, $state, Marks, MyService,$filter) {
   // $scope, $timeout, firebase, $state
   //$scope.data=MyService.getArray();
   var user = firebase.auth().currentUser;
@@ -415,7 +454,7 @@ angular.module('starter.controllers', [])
   };
 })
 //controladores de la pagina de detalles de las cervecerias y bares desd json
-.controller('Detalles',function($scope, $timeout, firebase, $state, Marks, MyService) {
+.controller('Detalles',function($scope, $timeout, firebase, $state, Marks, MyService, Imagenes) {
   // $scope, $timeout, firebase, $state
    //console.log("detallesCtrl");
   $scope.doLogout = function () {
@@ -442,9 +481,42 @@ angular.module('starter.controllers', [])
   else {
     $state.go('home', {});
   }
+
   $scope.data=Marks.all();
   $scope.id=MyService.getItem();
-  
+    
   $scope.item=$scope.data[$scope.id];// busca el item en array de firebase
   
+  //creo un mini mapa con el marcador en el item.
+      var myCenter = new google.maps.LatLng($scope.item.lat,$scope.item.lng);
+      
+      var mapProp = {
+          center: myCenter,
+          zoom: 15,
+          draggable: true,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          mapTypeControl: false,
+          streetViewControl: false,
+      };
+      $scope.map = new google.maps.Map(document.getElementById("map"),mapProp);
+      marker = new google.maps.Marker({
+          position: myCenter,
+      });
+      marker.setMap($scope.map);
+      
+      var slideIndex = 0;
+      showSlides();
+      //Controlador de la galeria de imagenes.
+      function showSlides() {
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          for (i = 0; i < slides.length; i++) {
+             slides[i].style.display = "none";
+          }
+          slideIndex++;
+          if (slideIndex> slides.length) {slideIndex = 1}
+          slides[slideIndex-1].style.display = "block";
+          setTimeout(showSlides, 3000); // Change image every 2 seconds
+      }
+
 });

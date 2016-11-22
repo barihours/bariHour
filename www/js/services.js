@@ -2,41 +2,49 @@ angular.module('starter.services', [])
 .service('MyService', function () {
   var property;
   var array;
-  var ubicacion;
-  var tipo;
   var item;
+  var lat;
+  var long;
   return {
-    getProperty: function () {
-      return property;
-    },
-    setProperty: function(value) {
-      property = value;
-    },
-    setUbicacion: function (value) {
-      ubicacion=value;
-    },
-    getUbicacion: function () {
-      return ubicacion;
-    },
-    getArray: function () {
-      return array;
-    },
-    setArray: function(value) {
-      array = value;
-    },
-    getTipo: function () {
-      return tipo;
-    },
-    setTipo: function (value) {
-      tipo=value;
-    },
-    getItem: function () {
-      return item;
-    },
-    setItem: function (value) {
-      item=value;
-    }
+      getLat: function () {
+          return lat;
+      },
+      getLon: function () {
+          return long;
+      },
+      setLocation: function(value) {
+          lat = value.coords.latitude;
+          long = value.coords.longitude;
+      },
+      getProperty: function () {
+          return property;
+      },
+      setProperty: function(value) {
+          property = value;
+      },
+      getArray: function () {
+          return array;
+      },
+      setArray: function(value) {
+          array = value;
+      },
+      getItem: function () {
+          return item;
+      },
+      setItem: function (value) {
+          item=value;
+      }
   };
+})
+.factory('Imagenes', function(){
+  //crea el acceso al almacenamieto a firebase
+  var storage = firebase.storage();
+  //Crea la regerencia a dicho almacenamiento
+  var storageRef = storage.ref();
+  //crea referencia a las imagenes
+  var imagesRef = storageRef.child('img');
+  return imagesRef;
+
 })
 .factory('Marks', function(){
   var database = firebase.database();//se llama a a base de datos en firebase
@@ -56,19 +64,28 @@ angular.module('starter.services', [])
       //console.log('El marcador '+marcador.key +'es ' + marcador.val());
       arr2 = {
         key: marcador.key,
-        id:marcador.val().id,
         descrip: marcador.val().descrip,
-        tipo: marcador.val().tipo,
-        start: marcador.val().start,
+        direccion:marcador.val().direccion ,
         end: marcador.val().end,
-        icon:marcador.val().icon,
+        facebook:marcador.val().facebook,
+        horario: marcador.val().horario,
+        iconMarKer:marcador.val().iconMarKer,
+        id:marcador.val().id,
+        image: marcador.val().image,
+        image2:marcador.val().image2,
+        image3:marcador.val().image3,
         lat: marcador.val().lat,
         lng: marcador.val().lng,
-        image: marcador.val().image,
+        logo:marcador.val().logo,
         name: marcador.val().name,
-        horario: marcador.val().horario
-
-       };
+        start: marcador.val().start,
+        telefono:marcador.val().telefono,
+        tipo: marcador.val().tipo,
+        twiter:marcador.val().twiter,
+         web:marcador.val().web       
+        //icon:marcador.val().icon,        
+       // image1:marcador.val().image1,
+      };
       marcadores.push(arr2);
    });
   });
