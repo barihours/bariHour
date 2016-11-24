@@ -1,91 +1,30 @@
-
 <style>
-* {box-sizing:border-box}
-body {font-family: Verdana,sans-serif;}
-.mySlides {display:none;}
-
-/* Slideshow container */
-.slideshow-container {
-  width:100%;
-  max-width: 100%;
-  height: 50%;
-  position: relative;
-  display: block;
-  background: #000000;
-  margin: auto;
-}
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-  margin:0px 0px;
-}
-.set img {
-    position: absolute;
-    width: auto;
-    height: 100%;
-    transform: translate(-50%, -50%);
-  
-
-}
-@-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
 
 p{
-  margin:0px 0px;
+  margin:3px 0px;
 }
-
-
-
+body, html{
+    height: 100%;
+}
 </style>
-<body>
+<html>
 
+  <body>
+    <div class="slideshow-container">
+      <div id="contenido">
+      </div>
 
+      <div id="detalle" class="animateText">
 
-<br><br>
-<div class="slideshow-container">
+        <p><u>{{item.name}}</u></p>
+        <p>{{item.telefono}}</p>
+        <p>{{item.direccion}}</p>
+      </div>
 
-<div class="mySlides fade">
-  <img src="{{item.image1}}" class="set">
-</div>
-
-<div class="mySlides fade">
-  <img src="{{item.image2}}" class="set">
-</div>
-
-<div class="mySlides fade">
-  <img src={{item.image3}} class="set">
-</div>
-
-<div style="background: #000000; color:#FFFFFF; margin: 0px;font-weight:bold;text-align:center;">
-
-  <p>{{item.name}}</p>
-  <p>{{item.telefono}}</p>
-  <p>{{item.direccion}}</p>
-</div>
-
-<div id="map" style="height:200px;filter:grayscale(90%);-webkit-filter:grayscale(90%);"></div>
-</div>
-
-
-
-
-
-<!-- Add Google Maps -->
-
-
-</body>
-
+      <div id="mapa" style="height:200px;filter:grayscale(90%);-webkit-filter:grayscale(90%);"></div>
+    </div>
+  </body>
+</html>
 
 
 

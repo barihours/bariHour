@@ -27,6 +27,7 @@ angular.module('starter.routes', [])
   .state('app.listaBar', {
     cache: false,
     url: '/listaBar',
+    animation: 'slide-in',
     templateUrl: 'templates/listaBar.html',
     controller: 'Lista'     
     })

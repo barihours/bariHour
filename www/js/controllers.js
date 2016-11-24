@@ -1,7 +1,6 @@
 
 angular.module('starter.controllers', [])
 
-
 .controller('MenuCtrl', function($scope,MyService,$http,$cordovaGeolocation) {
 
   $scope.myFunc = function(e) {
@@ -34,8 +33,7 @@ angular.module('starter.controllers', [])
   var options = {timeout: 10000, enableHighAccuracy: true};
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-      var marker = new google.maps.Marker({
+      	var marker = new google.maps.Marker({
         map: $scope.map,
         position: latLng
       });  
@@ -106,7 +104,10 @@ angular.module('starter.controllers', [])
          
           //Descripcion cada marcador en su infoWindows
           var infoWindow = new google.maps.InfoWindow({
-            content:  "<div id= \"contentInfo\"><div id=\"name\"> <b>"+value.name+"</b></div>"+ value.horario+"<br> "+value.telefono +"<br><div><a class=\"button button-clear button-dark\" href=\"#/app/detalles\" ng-click=\"detalle()\"><b>Ver Mas</b></a> </div></div>"
+            content:  '<div id= "contentInfo"><div id="name"> <b><u>'
+            +value.name+'</b></u></div>'+ value.horario+'<br>Happy de '+value.start+' a '+value.end+
+            '<br><div><a class="button button-clear button-dark" href="#/app/detalles"'
+            +'ng-click="detalle()"><b>Ver Mas</b></a> </div></div>'
           })
 
           //Accion del click sobre cada marcador - Abrir/cerrar infoWindows
@@ -171,11 +172,19 @@ angular.module('starter.controllers', [])
   $scope.data=MyService.getArray();
   $scope.detalle = function(e) {
     MyService.setItem(e);
-    };
+    }
+   $scope.bounce = function(x) { 
+  	      //Verifica si esta entre el horario y cambia el icono
+  	      var today = $filter('date')(new Date(),'HH:mm:ss');
+          if (today>x.start && today<x.end)
+            return 0;
+          else
+          	return 1;
+          }
 })
 
 
-.controller('Detalles',function($scope, MyService) {
+.controller('Detalles',function($scope, MyService,$ionicHistory) {
 $scope.data=MyService.getArray();
 $scope.id=MyService.getItem();
 $scope.item=$scope.data.marcadores[$scope.id];
@@ -191,12 +200,17 @@ $scope.item=$scope.data.marcadores[$scope.id];
           mapTypeControl: false,
           streetViewControl: false,
       };
-      $scope.map = new google.maps.Map(document.getElementById("map"),mapProp);
+      $scope.mapa = new google.maps.Map(document.getElementById("mapa"),mapProp);
       marker = new google.maps.Marker({
           position: myCenter,
       });
-      marker.setMap($scope.map);
-      
+      marker.setMap($scope.mapa);
+      var html;
+        angular.forEach($scope.item.image, function(value, key){
+         html +=' <div class="mySlides fade"><img src='+
+         value.imagen+' class="set"></div>';
+        });
+      document.getElementById('contenido').innerHTML=html;
       var slideIndex = 0;
       showSlides();
       //Controlador de la galeria de imagenes.
