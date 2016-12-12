@@ -11,7 +11,8 @@ angular.module('starter.routes', [])
   .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/tabs.html',  
+    templateUrl: 'templates/tabs.html', 
+    controller: 'Tab'
     })
   .state('app.menu', {
     url: '/menu',

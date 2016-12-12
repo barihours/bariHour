@@ -7,10 +7,10 @@ html { height: 100% }
 body { height: 100%; margin: 0px; padding: 0px }
 
 /*Contiene las proporciones donde se visualizará el mapa*/
-#map { width: 100%; height: 96% }
+#map { width: 100%; height: 94% }
 
 /*contiene la altura para que las barras de menu y tabs no tapen el contenido*/
-#content{height: 94%}
+#content{height: 100%; margin-bottom: : 10%}
 
 /*Menu de Imágenes*/
 #menu img{
@@ -18,15 +18,18 @@ body { height: 100%; margin: 0px; padding: 0px }
   height:100%;
   display: block;
 }
+.gallery {
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
 
 /*Marca la posición del Icono BariHour*/
 #icono{position: absolute; top: 0px;left: 5px}
-
 /*Barra Principal - Titulo app*/
 #especial {
   font-style: bold;
-  font-size: 150%;
-  font-family: "Times New Roman", Times, red serifs;
+  font-size: 200%;
+  font-family: 'Rockwell Extra Bold', 'Rockwell Bold', monospace;
   width: auto;
   height: auto;
   -webkit-animation: mymove1 7s infinite; /* Chrome, Safari, Opera */
@@ -108,12 +111,14 @@ body { height: 100%; margin: 0px; padding: 0px }
 
 /* Slideshow container */
 .slideshow-container {
-  width:100%;
-  max-width: 100%;
-  height: 100%;
+  width:auto;
+  height: auto;
   display: block;
   background: #000000;
   margin-top: 6%;
+}
+#contenido{
+  background: #000000;
 }
 
 /* Fading animation */
@@ -126,11 +131,9 @@ body { height: 100%; margin: 0px; padding: 0px }
 }
 /*imagenes de slideshow*/
 .set img {
-    position: absolute;
-    width: auto;
-    height: 100%;
-    top: 0px;
-    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: auto;
+    ;
   
 
 }
@@ -181,40 +184,73 @@ body { height: 100%; margin: 0px; padding: 0px }
 .animateImage {
     -webkit-animation: animateInPrimary;
     animation: animateInPrimary;
-    -webkit-animation-duration: 750ms;
-    animation-duraton: 750ms;
+    -webkit-animation-duration: 2000ms;
+    animation-duration: 2000ms;
 }
  
 .animateText {
     -webkit-animation: animateInSecondary ease-in 1;
     animation: animateInSecondary ease-in 1;
-    -webkit-animation-duration: 750ms;
-    animation-duraton: 750ms;
+    -webkit-animation-duration: 1500ms;
+    animation-duration: 1500ms;
 }
-@-webkit-keyframes bounce {
-  0% {
-    -webkit-transform: translate3d(0,-30%,0);
+@keyframes heartbeat
+{
+  0%
+  {
+    transform: scale( 1 );
   }
- 
-  25% {
-    -webkit-transform: translate3d(0,80%,0);
+  20%
+  {
+    transform: scale( 1.25 );
   }
- 
-  50% {
-    -webkit-transform: translate3d(0,-30%,0);
+  40%
+  {
+    transform: scale( 1 );
   }
- 
-  75% {
-    -webkit-transform: translate3d(0,80%,0);
+  60%
+  {
+    transform: scale( 1.25 );
   }
- 
-  100% {
-    -webkit-transform: translate3d(0,-30%,0);
+  80%
+  {
+    transform: scale( 1 );
+  }
+  100%
+  {
+    transform: scale( 1 );
   }
 }
-.bounce-go {
-  -webkit-animation: bounce ease-in 20; 
-  animation: bounce ease-in 20;
-  -webkit-animation-duration: 1000ms;
-  animation-duration: 5000ms;
+.beat {
+  -webkit-animation: hearbeat ease-in 40; 
+  animation:heartbeat ease-in 40;
+  -webkit-animation-duration: 1500ms;
+  animation-duration: 1500ms;
+}
+header { 
+  padding: .5vw;
+  font-size: 0;
+  display: -ms-flexbox;
+  -ms-flex-wrap: wrap;
+  -ms-flex-direction: column;
+  -webkit-flex-flow: row wrap; 
+  flex-flow: row wrap; 
+  display: -webkit-box;
+  display: flex;
+}
+header div { 
+  -webkit-box-flex: auto;
+  -ms-flex: auto;
+  flex: auto; 
+  width: 200px; 
+  margin: .5vw; 
+}
+header div img { 
+  width: 100%; 
+  height: auto; 
+}
+@media screen and (max-width: 400px) {
+  header div { margin: 0; }
+  header { padding: 0; }
+  
 }

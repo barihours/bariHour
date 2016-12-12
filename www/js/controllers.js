@@ -71,7 +71,7 @@ angular.module('starter.controllers', [])
     //Le asigno el estilo de mapa personalizado
     $scope.map.mapTypes.set('map_style', styledMap);
     $scope.map.setMapTypeId('map_style');
-
+    var today = $filter('date')(new Date(),'HH:mm');
 
 
     //valor inicial para variable de infowindow
@@ -79,19 +79,20 @@ angular.module('starter.controllers', [])
     
     google.maps.event.addListenerOnce($scope.map, 'idle', function(){
       //Espera hasta que el mapa haya cargado
-      var today = $filter('date')(new Date(),'HH:mm:ss');
+      var animation;
     
       //Marcadores
       $scope.data=MyService.getArray();
-
 
       //Loop json
       angular.forEach($scope.data.marcadores, function(value, key){
         //Verifica si esta entre el horario y cambia el icono
         if ($scope.opcion==value.tipo|| $scope.opcion==0){
-          if (today>value.start && today<value.end){
-            var animation=google.maps.Animation.BOUNCE
+          //angular.forEach(value.happy2, function(value, key){
+          if (today>=value.start && today<=value.end){
+            var animation=google.maps.Animation.BOUNCE;
           }
+       // })
           //Setea marcador
           marker = new google.maps.Marker({
             map: $scope.map,
@@ -101,13 +102,14 @@ angular.module('starter.controllers', [])
             position: {lat: value.lat,lng: value.lng}
           });
           
+                      console.log(animation);
          
           //Descripcion cada marcador en su infoWindows
           var infoWindow = new google.maps.InfoWindow({
-            content:  '<div id= "contentInfo"><div id="name"> <b><u>'
-            +value.name+'</b></u></div>'+ value.horario+'<br>Happy de '+value.start+' a '+value.end+
-            '<br><div><a class="button button-clear button-dark" href="#/app/detalles"'
-            +'ng-click="detalle()"><b>Ver Mas</b></a> </div></div>'
+            content:  '<div id="name"> <u>'
+            +value.name+'</u><br>'+ value.horario+'<br>Happy de '+value.start+' a '+value.end+
+            '<br><a class="button button-clear button-dark" href="#/app/detalles"'
+            +'ng-click="detalle()"><b>Ver Mas</b></a> </div>'
           })
 
           //Accion del click sobre cada marcador - Abrir/cerrar infoWindows
@@ -170,18 +172,38 @@ angular.module('starter.controllers', [])
 
 .controller('Lista',function($scope, MyService,$filter) {
   $scope.data=MyService.getArray();
+  var today = $filter('date')(new Date(),'HH:mm');
+
   $scope.detalle = function(e) {
     MyService.setItem(e);
     }
-   $scope.bounce = function(x) { 
+   $scope.bounce = function(id) { 
+   			var item=$scope.data.marcadores[id];
+   			console.log(today);
   	      //Verifica si esta entre el horario y cambia el icono
-  	      var today = $filter('date')(new Date(),'HH:mm:ss');
-          if (today>x.start && today<x.end)
-            return 0;
-          else
-          	return 1;
-          }
+	          if (today>item.start && today<item.end){
+	            return true;}
+	          else{
+	          	return false;}
+      }
 })
+
+.controller('Tab',function($scope, MyService,$filter) {
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .controller('Detalles',function($scope, MyService,$ionicHistory) {
@@ -208,7 +230,7 @@ $scope.item=$scope.data.marcadores[$scope.id];
       var html;
         angular.forEach($scope.item.image, function(value, key){
          html +=' <div class="mySlides fade"><img src='+
-         value.imagen+' class="set"></div>';
+         value.imagen+' ></div>';
         });
       document.getElementById('contenido').innerHTML=html;
       var slideIndex = 0;
