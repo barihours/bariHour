@@ -1,66 +1,37 @@
 <ion-nav-view>
   <!-- Barra Principal - Titulo app -->
   <ion-nav-bar class="bar-dark">
-    <div class="gif">
     <ion-nav-buttons>
       <div id="icono">
         <img src="img/favicon.ico">
       </div>
     </ion-nav-buttons>
 
-    <ion-nav-title >  
-      <h1 id="especial" class="title"><b>BARIHOUR</b></h1>  
+    <ion-nav-title > 
+      <h1 id="especial" class="title">BariHour</h1>  
     </ion-nav-title>
     
-      </ion-nav-bar>
-
-    
-
-  
-  <!--*******************************-->
+    <ion-nav-buttons side="secondary">
+      <a href="#/app/info" ng-click="info()"><button class="button button-clear button-stable  ion-information-circled"></button></a>
+    </ion-nav-buttons>
+  </ion-nav-bar>
 
   <!--Tab inferior -->
-  <!--<div class="tabs-dark tabs-icon-top">
-    <div class="tabs">
+    <div class="tabs tabs-dark tabs-icon-top" ng-controller="userCtrl">
       <a class="tab-item" href="#/app/menu">
-        <i class="icon ion-home " ></i>
-        <b>Main Menu</b>
+        <i class="icon ion-home"></i><b>Menu</b>
       </a>
       <a class="tab-item" href="#/app/listaBar">
-        <i class="icon ion-wineglass "></i>
-        <b>Bares</b>
+        <i class="icon ion-wineglass "></i><b>Bares</b>
       </a>
       <a class="tab-item " href="#/app/listaCerve">
-        <i class="icon ion-beer"></i>
-        <b>Cervecerias</b>
+        <i class="icon ion-beer"></i><b>Cervecerias</b>
       </a>
       <a class="tab-item" href="#/app/listaPubs">
-        <i class="icon ion-social-freebsd-devil"></i>
-        <b>Pubs</b>
-      </a>    
+        <i class="icon ion-social-freebsd-devil"></i><b>Pubs</b>
+      </a>
+      <a class="tab-item" href="" ng-click="cambiarUser()">
+        <i class="icon ion-person"></i><b>Perfil</b>
+      </a>
     </div>
-  </div>-->
-  <!--*******************************-->
-  <ion-tabs class="tabs-icon-top tabs-dark">
-
-  <!-- Dashboard Tab -->
-  <ion-tab title="Menu" icon="icon ion-home"  href="#/app/menu">
-
-  </ion-tab>
-
-  <!-- Chats Tab -->
-  <ion-tab title="Bares" icon="icon ion-wineglass"  href="#/app/listaBar">
-
-  </ion-tab>
-
-  <!-- Account Tab -->
-  <ion-tab title="Cervecerias" icon="icon ion-beer"  href="#/app/listaCerve">
-</ion-tab>
-  <ion-tab title="Pubs" icon="icon ion-social-freebsd-devil"  href="#/app/listaPubs">
-
-  </ion-tab>
-
-
-</ion-tabs>
-
 </ion-nav-view>
